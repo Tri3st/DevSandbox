@@ -1,0 +1,22 @@
+{%  extends 'blog/base.html' %}
+
+{% block title %}
+    Links
+{% endblock title %}
+
+{% block content %}
+
+    <h2>Links</h2>
+
+    <ul>
+    {% if links|length > 0 %}
+        {% for link in links %}
+        <li>{{ link.name }} : <a href="{{ link.url }}" target="_blank">{{ link.url }}</a></li>
+        {% endfor %}
+    {%  else %}
+    <h2>No links are provided yet! Make some..</h2>
+    {% endif %}
+    </ul>
+
+
+{%  endblock content %}

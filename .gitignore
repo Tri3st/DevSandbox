@@ -1,0 +1,14 @@
+backend/.env*
+# we commit the files, but without the secrets
+docker/.env
+docker/.env*
+
+
+# npm run dev)
+frontend/node_modules/
+frontend/package-lock.json
+
+# testing
+frontend/cypress/videos
+frontend/cypress/screenshots
+

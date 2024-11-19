@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My super new Page!{% endblock title %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/M-favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<header data-bs-theme="dark">
+    <div class="bg-black">
+        <img src="{% static 'img/MartinsDevSandbox.png' %}" alt="Martins Dev sandbox image" width="400px">
+    </div>
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'img/M-favicon.png' %}" alt="M-favicon" width="30" height="24">
+                Martin's DEV Sandbox
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'links' %}">Links</a>
+                    </li>
+                </ul>
+                {#            <form class="d-flex" role="search">#}
+                {#                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">#}
+                {#                <button class="btn btn-outline-success" type="submit">Search</button>#}
+                {#            </form>#}
+            </div>
+            {% if user.is_authenticated %}
+                <span class="text-success">Welcome, {{ user.username }}</span>
+                <a href="{% url 'logout' %}"><button>Logout</button></a>
+            {% else %}
+                <a href="{% url 'login' %}"><button >Login</button></a>
+            {%  endif %}
+        </div>
+    </nav>
+</header>
+
+
+{% block content %}{% endblock content %}
+
+<footer class="footer fixed-bottom bg-dark">
+    <div class="conatiner text-center">
+        <span class="text-white">Martin van Diest 2024</span>
+    </div>
+</footer>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

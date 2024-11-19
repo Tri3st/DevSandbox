@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+Redirection Page
+{% endblock title %}
+
+{% block content %}
+    <h1>You are being redirected...</h1>
+    <p>If you are not being redirected in a few seconds, <a href="{{ target_url }}">click here</a>.</p>
+{%  endblock content %}
