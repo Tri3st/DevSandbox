@@ -23,7 +23,9 @@ env = environ.Env(
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ENV_DIR = BASE_DIR.parent
+ENV_DIR = BASE_DIR.parent.parent
+
+print("env_dir : ", ENV_DIR)
 
 environ.Env.read_env(os.path.join(ENV_DIR, '.env'))
 
@@ -145,9 +147,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # default static files settings for PythonAnywhere.
 # see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = '/home/martin2/backend/mysite2/media'
+MEDIA_ROOT = '/home/martin2/media'
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/martin2/backend/mysite2/static'
+STATIC_ROOT = '/home/martin2/static'
 STATIC_URL = '/static/'
 STATIC_FILES_DIRS = (
     os.path.join(BASE_DIR, 'static')
@@ -155,10 +157,6 @@ STATIC_FILES_DIRS = (
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173",]
 
-
-GRAPHENE = {
-    "SCHEMA": "blog.schema.schema"
-}
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"

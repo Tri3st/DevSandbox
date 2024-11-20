@@ -3,34 +3,40 @@ services:
     container_name: "postgres"
     image: postgres
     restart: always
-    ports:
-      - '5432-5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - backend_network
     environment:
-      - POSTGRES_PASSWORD=SUPERSECRETPA$$WORD
+      - POSTGRES_PASSWORD=cadueUHulyGUxP
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=my_django_db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d my_django_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 
   django:
     container_name: "django"
     build:
-      context: ../backend/mysite2
+      context: ../backend
     command: >
       bash -c '
       python3 manage.py makemigrations &&
       python3 manage.py migrate --no-input &&
       python3 manage.py runserver 0.0.0.0:8000'
-    env_file:
-      - ../backend/.env
     volumes:
-      - ../backend/mysite2:/code
+      - ../backend/:/code
     ports:
-      - "8000:8000"
+      - "8002:8000"
     depends_on:
       - db
     networks:
       - nginx_network
       - backend_network
-  
+    env_file: "../.env"
 
 networks:
   backend_network:
@@ -38,3 +44,5 @@ networks:
   nginx_network:
     driver: bridge
 
+volumes:
+  postgres_data:
