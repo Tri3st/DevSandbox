@@ -2,6 +2,8 @@ backend/.env*
 # we commit the files, but without the secrets
 docker/.env
 docker/.env*
+frontend/.env
+frontend/.env*
 
 
 # npm run dev)
