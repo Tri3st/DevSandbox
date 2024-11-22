@@ -15,6 +15,6 @@ COPY . .
 # build app for production with minification
 WORKDIR /app/frontend
 
-EXPOSE 8080
+EXPOSE 5173
 
 CMD ["npm", "run", "dev"]

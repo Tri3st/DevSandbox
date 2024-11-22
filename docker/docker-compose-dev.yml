@@ -30,7 +30,7 @@ services:
     volumes:
       - ../backend/:/code
     ports:
-      - "8003:8000"
+      - "127.0.0.1:8003:8000"
     depends_on:
       - db
     networks:
@@ -42,12 +42,10 @@ services:
     build:
       context: ../frontend
       dockerfile: Dockerfile-vue-dev
-    extra_hosts:
-      - "*.vandiest.it:127.0.0.1"
     volumes:
       - .:/app/frontend
     ports:
-      - "8081:8080"
+      - "127.0.0.1:8081:5173"
     networks:
       - nginx_network
     depends_on:
