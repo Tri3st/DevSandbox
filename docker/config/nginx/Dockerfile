@@ -3,7 +3,8 @@ WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm install
 COPY . .
-RUN cd frontend && npm run build
+WORKDIR /home/martin2/DevSandbox/frontend 
+RUN npm run build
 
 # production stage
 FROM nginx:1.13.12-alpine as production-stage
