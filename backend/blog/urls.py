@@ -1,15 +1,18 @@
 from django.urls import path
+from . import views
 from rest_framework import routers
-from .views import PostViewSet, UserViewSet, GroupViewSet, links, cv, index
 
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
-router.register(r'posts', PostViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'posts', views.PostViewSet)
 
 urlpatterns = [
-    path("", index, name="home"),
-    path("links/", links, name="links"),
-    path("cv/", cv, name="cv"),
+    path("", views.index, name="home"),
+    path("links/", views.links, name="links"),
+    path("cv/", views.cv, name="cv"),
+
+    path("api/posts/", views.post_list, name="post_list"),
+    path("api/posts/<int:pk>", views.post_detail, name="post_detail"),
 ]

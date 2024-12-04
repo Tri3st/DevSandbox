@@ -155,7 +155,7 @@ STATIC_FILES_DIRS = (
     os.path.join(BASE_DIR, 'static')
 )
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173",]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5174",]
 
 
 LOGIN_REDIRECT_URL = "home"
