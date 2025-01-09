@@ -26,25 +26,23 @@ services:
       bash -c '
       python3 manage.py makemigrations &&
       python3 manage.py migrate --no-input &&
-      cd backend/ &&
-      gunicorn backend.wsgi -b 0.0.0.0:8000'
+      gunicorn info.wsgi -b 0.0.0.0:8001'
     volumes:
       - ../backend/:/code
-    ports:
-      - "8000:8000"
     depends_on:
       - db
     networks:
-      - nginx_network
+      # - nginx_network
       - backend_network
     env_file: "../.env"
 
   nginx:
+    container_name: "nginx"
     build:
-      context: .
-      dockerfile: ./config/nginx/Dockerfile
+      context: ../frontend
+      dockerfile: ../frontend/Dockerfile
     ports:
-      - "8000:80"
+      - "5173:80"
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
