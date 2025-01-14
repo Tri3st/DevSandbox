@@ -45,7 +45,7 @@ services:
     volumes:
       - .:/app/frontend
     ports:
-      - "127.0.0.1:5174:5173"
+      - "127.0.0.1:5173:5173"
     networks:
       - nginx_network
     depends_on:

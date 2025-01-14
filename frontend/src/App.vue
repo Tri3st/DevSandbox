@@ -1,5 +1,9 @@
 <template>
-    <h1 class="text4xl">Welcome!</h1>
+    <TheHeader />
+    <RouterView />
+    <TheFooter />
 </template>
-<script setup></script>
-
+<script setup>
+import TheHeader from "./components/TheHeader.vue";
+import TheFooter from "./components/TheFooter.vue";
+</script>

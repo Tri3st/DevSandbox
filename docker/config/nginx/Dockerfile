@@ -13,7 +13,7 @@ RUN npm run build
 # production stage
 FROM nginx:1.13.12-alpine AS production-stage
 
-COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
+COPY --from=build-stage /app/frontend/dist /var/www/mysite
 # COPY frontend/dist /usr/share/nginx/html
 
 EXPOSE 5173
