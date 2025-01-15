@@ -26,11 +26,11 @@ services:
       bash -c '
       python3 manage.py makemigrations &&
       python3 manage.py migrate --no-input &&
-      python3 manage.py runserver 0.0.0.0:8001'
+      python3 manage.py runserver 0.0.0.0:8000'
     volumes:
       - ../backend/:/code
     ports:
-      - "127.0.0.1:8001:8001"
+      - "127.0.0.1:8000:8000"
     depends_on:
       - db
     networks:
