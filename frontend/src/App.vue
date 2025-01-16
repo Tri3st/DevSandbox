@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <TheHeader class=header" />
+    <TheHeader class="header" />
     <main>
       <RouterView class="main"/>
     </main>
