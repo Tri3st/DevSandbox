@@ -3,7 +3,10 @@
 </script>
 
 <template>
-  <h1 class="text-7xl">HOME VIEW</h1>
+  <div class="pt-12">
+
+    <h1 class="text-7xl">HOME VIEW</h1>
+  </div>
 </template>
 
 <style scoped>

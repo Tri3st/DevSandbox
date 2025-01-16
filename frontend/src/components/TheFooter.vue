@@ -4,11 +4,11 @@ const styleClass = "text-sm text-gray-900 mx-4"
 
 <template>
   <footer>
-    <ul>
-      <li :class="styleClass">©</li>
-      <li :class="styleClass">Martin van Diest</li>
-      <li :class="styleClass">2024</li>
-    </ul>
+    <div class="flex items-center justify-between">
+      <div :class="styleClass" style="width: 33%">©</div>
+      <div :class="styleClass">Martin van Diest</div>
+      <div :class="styleClass">2024</div>
+    </div>
   </footer>
 </template>
 

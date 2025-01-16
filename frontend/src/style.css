@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, main, footer */
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+    background-color: #f0f0f0;
+}
+
+footer {
+    background-color: #fff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+
+}

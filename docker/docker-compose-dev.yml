@@ -43,7 +43,8 @@ services:
       context: ../frontend
       dockerfile: Dockerfile-vue-dev
     volumes:
-      - .:/app/frontend
+      - ../frontend:/app/frontend:cached
+      - /app/node_modules
     ports:
       - "127.0.0.1:5173:5173"
     networks:
