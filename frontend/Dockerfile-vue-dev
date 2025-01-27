@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 node:22
+FROM node:23-alpine
 
 # make the 'app' folder the current working directory
 WORKDIR /app

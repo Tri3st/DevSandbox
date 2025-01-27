@@ -15,7 +15,7 @@
 
     <section>
       <p>Test test test</p>
-      <p>And more tests ..</p>
+      <p>And more TESTS ..</p>
     </section>
   </div>
 </template>
