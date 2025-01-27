@@ -6,8 +6,9 @@ import { fileURLToPath, URL } from 'node:url';
 export default defineConfig({
   plugins: [vue()],
   server: {
-    usePolling: true,
-    interval: 100
+    watch: {
+      usePolling: true,
+    }
   },
   host: '0.0.0.0',
   port: 5173,
