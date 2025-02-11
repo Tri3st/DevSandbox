@@ -1,13 +1,16 @@
 <script setup>
+import { ref } from "vue";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
-const navigation = [
+const navigation = ref([
   { name: 'Home', href: '/', current: true },
   { name: 'Portfolio', href: '/portfolio', current: false },
   { name: 'Links', href: '/links', current: false },
   { name: 'About me', href: '/aboutme', current: false },
-]
+])
+
+
 </script>
 
 <template>
