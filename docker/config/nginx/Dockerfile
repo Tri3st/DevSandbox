@@ -2,20 +2,22 @@ FROM node:22-alpine AS build-stage
 
 WORKDIR /app
 
-COPY ./package.json .
+COPY package.json package-lock.json ./  # Ensure both package.json and package-lock.json are copied 
 
 RUN npm install
 
-COPY . .
+COPY . .  # Copy everything after dependencies are installed
 
-RUN npm run build
+RUN npm run build  # Ensure this creates 'dist' inside /app
 
 # production stage
 FROM nginx:1.13.12-alpine AS production-stage
 
-COPY --from=build-stage /app/frontend/dist /var/www/mysite
-# COPY frontend/dist /usr/share/nginx/html
+RUN mkdir -p /var/www/mysite
 
-EXPOSE 5173
+# Copy Vue build output to the correct directory
+COPY --from=build-stage /app/dist /usr/nginx/html  # Fixed destination path
+
+EXPOSE 80  # Nginx default port (was 5173, which is default for vite dev server)
 
 CMD ["nginx", "-g", "daemon off;"]

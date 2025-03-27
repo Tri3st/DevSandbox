@@ -22,34 +22,49 @@ services:
     container_name: "django"
     build:
       context: ../backend
-    command: >
-      bash -c '
-      python3 manage.py makemigrations &&
-      python3 manage.py migrate --no-input &&
-      gunicorn info.wsgi -b 0.0.0.0:8001'
+    command: daphne -b 0.0.0.0 -p 8000 info.asgi:application  # ASGI with daphne 
     volumes:
       - ../backend/:/code
+      - static_volume:/code/static
+      - media_volume:/code/media
     depends_on:
       - db
     networks:
       # - nginx_network
       - backend_network
     env_file: "../.env"
+    restart: always
 
   nginx:
+    image: nginx:1.27-alpine-slim
     container_name: "nginx"
-    build:
-      context: ../frontend
-      dockerfile: ../frontend/Dockerfile
+    init: true
+    command: [ nginx, '-g', 'daemon off;' ]
     ports:
-      - "5173:80"
+      - "127.0.0.1:8001:80"
     volumes:
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/nginx/certs:/etc/nginx/certs:ro
+      - ./config/nginx/conf.d/mysites/mysite.conf:/etc/nginx/nginx.conf
+      - static_volume:/usr/share/nginx/html/static
+      - media_volume:/usr/share/nginx/html/media
+      - vue-static:/usr/share/nginx/html
     depends_on:
       - django
       - db 
+      - frontend
     networks:
       - nginx_network
+    restart: always
+
+  frontend: 
+    build: 
+     context: ../frontend
+    container_name: frontend
+    restart: always
+    volumes:
+      - vue-static:/usr/share/nginx/html
+    depends_on:
+      - django
 
 networks:
   backend_network:
@@ -59,3 +74,6 @@ networks:
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:
+  vue-static:
