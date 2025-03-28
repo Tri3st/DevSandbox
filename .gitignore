@@ -14,3 +14,5 @@ frontend/package-lock.json
 frontend/cypress/videos
 frontend/cypress/screenshots
 
+# Not the certificates (copy these from /etc/nginx/certs to frontend/conf/certs
+frontend/conf/certs/*

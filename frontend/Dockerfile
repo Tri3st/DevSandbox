@@ -18,7 +18,7 @@ COPY --from=build-stage app/dist /usr/share/nginx/html
 
 RUN mkdir -p /etc/nginx/certs
 
-COPY ./conf/certs/ /etc/nginx/certs/
+COPY /etc/nginx/certs/ /etc/nginx/certs/
 COPY conf/nginx-default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
