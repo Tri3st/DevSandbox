@@ -30,7 +30,6 @@ services:
     depends_on:
       - db
     networks:
-      # - nginx_network
       - backend_network
     env_file: "../.env"
     restart: always
@@ -43,37 +42,31 @@ services:
     ports:
       - "127.0.0.1:8001:80"
     volumes:
-      - /etc/nginx/certs:/etc/nginx/certs:ro
-      - ./config/nginx/conf.d/mysites/mysite.conf:/etc/nginx/nginx.conf
+      - ./config/nginx/conf.d/mysites/mysite.conf:/etc/nginx/nginx.conf:ro
       - static_volume:/usr/share/nginx/html/static
       - media_volume:/usr/share/nginx/html/media
-      - vue-static:/usr/share/nginx/html
     depends_on:
       - django
       - db 
       - frontend
     networks:
-      - nginx_network
+      - backend_network 
     restart: always
 
   frontend: 
     build: 
      context: ../frontend
+     target: production-stage
     container_name: frontend
     restart: always
-    volumes:
-      - vue-static:/usr/share/nginx/html
     depends_on:
       - django
 
 networks:
   backend_network:
     driver: bridge
-  nginx_network:
-    driver: bridge
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
-  vue-static:
