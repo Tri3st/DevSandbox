@@ -45,7 +45,7 @@ services:
       - ./config/nginx/conf.d/mysites/mysite.conf:/etc/nginx/nginx.conf:ro
       - static_volume:/usr/share/nginx/html/static
       - media_volume:/usr/share/nginx/html/media
-      - ssl_certs:/etc/nginx/certs  # Access certs from frontend
+      - /etc/nginx/certs:/etc/nginx/certs:ro  # Access certs from frontend
     depends_on:
       - django
       - db 
@@ -63,7 +63,9 @@ services:
     depends_on:
       - django
     volumes:
-      - ssl_certs:/etc/nginx/certs  # Share certs with nginx
+      - /etc/nginx/certs:/etc/nginx/certs:ro
+    networks:
+      - backend_network 
 
 networks:
   backend_network:
@@ -73,4 +75,3 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
-  ssl_certs:

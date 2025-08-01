@@ -170,3 +170,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Enforce HTTPS (Only if the site is actually using HTTPS)
+SECURE_SSL_REDIRECT = False 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
